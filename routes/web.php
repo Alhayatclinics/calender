@@ -47,9 +47,17 @@ Route::get('/appointments/show', [AppointmentsController::class, 'show'])->name(
 Route::post('/appointments', [AppointmentsController::class, 'store'])->name('appointments.store');
 Route::put('/appointments/{id}', [AppointmentsController::class, 'update'])->name('appointments.update');
 Route::get('/appointments/{id}', [AppointmentsController::class, 'destroy'])->name('appointments.destroy');
+<<<<<<< HEAD
+Route::get('/export-appointments', [AppointmentsController::class, 'exportAppointments'])->name('export.appointments');
+=======
+>>>>>>> origin/main
 //register
 Route::get('/registrations', [RegistrationController::class, 'index'])->name('registrations.index');
 Route::get('/registrations/{id}', [RegistrationController::class, 'getRegistrationData'])->name('registrations.getRegistrationData');
 Route::post('/registrations', [RegistrationController::class, 'store'])->name('registrations.store');
+<<<<<<< HEAD
+Route::post('/registrationss', [RegistrationController::class, 'storeWaitlist'])->name('registrations.storeWaitlist');
+=======
+>>>>>>> origin/main
 Route::put('/registrations/{id}', [RegistrationController::class, 'update'])->name('registrations.update');
 Route::delete('/registrations/{id}', [RegistrationController::class, 'destroy'])->name('registrations.destroy');

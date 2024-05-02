@@ -59,8 +59,58 @@ public function store(Request $request)
         'time_from' => 'required|string',
         'time_to' => 'nullable|string',
         'day' => 'required|date',
+<<<<<<< HEAD
+        'active' => 'required',
         'email' => 'required|email',
     ]);
+
+    $validatedData['active'] = 1;  // Set 'active' to 1 by default
+=======
+        'email' => 'required|email',
+    ]);
+
+>>>>>>> origin/main
+    // Create a new Registration instance
+    $registration = Registration::create($validatedData);
+
+    // Send email notification
+    try {
+        Mail::to($validatedData['email'])->send(new RegistrationStored($registration));
+<<<<<<< HEAD
+
+        // Email sent successfully
+        return redirect()->route('registrations.index')->with('success', 'Registration stored successfully and email notification sent');
+=======
+>>>>>>> origin/main
+    } catch (\Exception $e) {
+        // Handle email sending failure
+        return redirect()->back()->with('error', 'Failed to send registration email');
+    }
+<<<<<<< HEAD
+}
+public function storeWaitlist(Request $request)
+{
+    // Validate the incoming request data
+    $validatedData = $request->validate([
+        'phone' => 'required|string',
+        'name' => 'required|string',
+        'birth_date' => 'required|date',
+        'gender' => 'required|string',
+        'confirmation' => 'required|string',
+        'medical_insurance' => 'required|string',
+        'doctor_name' => 'nullable|string',
+        'service_name' => 'nullable|string',
+        'branch_name' => 'nullable|string',
+        'n_insurance' => 'nullable|string',
+        'n_id' => 'required|string',
+        'price' => 'nullable|numeric',
+        'time_from' => 'required|string',
+        'time_to' => 'nullable|string',
+        'day' => 'nullable|date',
+        'active' => 'nullable',
+        'email' => 'required|email',
+    ]);
+    $validatedData['active'] = 0;  // Set 'active' to 1 by default
 
     // Create a new Registration instance
     $registration = Registration::create($validatedData);
@@ -68,10 +118,13 @@ public function store(Request $request)
     // Send email notification
     try {
         Mail::to($validatedData['email'])->send(new RegistrationStored($registration));
+
+        // Email sent successfully
+        return redirect()->route('registrations.index')->with('success', 'Registration stored successfully and email notification sent');
     } catch (\Exception $e) {
         // Handle email sending failure
         return redirect()->back()->with('error', 'Failed to send registration email');
-    }
+=======
 
     // Send WhatsApp message using Twilio API
     $sid = env('TWILIO_SID');
@@ -95,6 +148,7 @@ public function store(Request $request)
         dd($e);
         // Handle Twilio message sending failure
         return redirect()->route('registrations.index')->with('error', 'Failed to send WhatsApp message: ' . $e->getMessage());
+>>>>>>> origin/main
     }
 }
 
@@ -125,8 +179,16 @@ public function store(Request $request)
     }
     public function destroy($id)
     {
+<<<<<<< HEAD
+        $registration = Registration::find($id);
+
+        if (!$registration) {
+            return redirect()->route('registrations.index')->with('error', 'Registration not found');
+        }
+=======
         // Find the registration by ID
         $registration = Registration::findOrFail($id);
+>>>>>>> origin/main
 
         // Delete the registration
         $registration->delete();
@@ -134,4 +196,8 @@ public function store(Request $request)
         // Redirect to the 'registrations.index' view with a success message
         return redirect()->route('registrations.index')->with('success', 'Registration deleted successfully');
     }
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/main
 }

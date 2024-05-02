@@ -24,4 +24,12 @@ class Branch extends Model
     protected $fillable = [
         'name',
     ];
+<<<<<<< HEAD
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
+=======
+>>>>>>> origin/main
 }

@@ -30,6 +30,10 @@ class Registration extends Model
         'service_name',
         'branch_name',
         'email',
+<<<<<<< HEAD
+        'active',
+=======
+>>>>>>> origin/main
         'day',
     ];
 

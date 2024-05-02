@@ -73,9 +73,27 @@ class BranchController extends Controller
      * @param  \App\Models\Branch  $branch
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
+    public function destroy($id)
+    {
+        // Find the branch by ID
+        $branch = Branch::findOrFail($id);
+
+        // Delete all appointments associated with the branch
+        $branch->appointments()->delete();
+
+        // Now delete the branch
+        $branch->delete();
+
+        // Redirect with success message
+        return redirect()->route('branches.index')->with('success', 'Branch deleted successfully');
+    }
+
+=======
     public function destroy(Branch $branch)
     {
         $branch->delete();
         return redirect()->route('branches.index')->with('success', 'Branch deleted successfully.');
     }
+>>>>>>> origin/main
 }
